@@ -1,8 +1,19 @@
 require('dotenv').config();
+const express = require('express');
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require("axios");
 const token = process.env.TOKEN;
 const bot = new TelegramBot(token, { polling: true });
+
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+app.listen(3000, () => {
+    console.log('app listening on port 3000!');
+});
 
 bot.onText(/\/recommend (.+)/, async (msg, match) => {
   const query = match[1];
@@ -29,7 +40,6 @@ async function getBookRecommendations(query) {
     title: item.volumeInfo.title,
     authors: item.volumeInfo.authors || ['Unknown Author']
   }));
-  console.log(books)
   return books;
 }
 
