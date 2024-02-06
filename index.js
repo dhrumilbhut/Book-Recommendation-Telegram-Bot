@@ -5,17 +5,17 @@ const axios = require("axios");
 const token = process.env.TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 
-const app = express();
+const index = express();
 
-app.use('/', (req, res) => {
+index.use('/', (req, res) => {
   res.send("Hello World!");
 });
-app.get('/', (req, res) => {
+index.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.listen(3000, () => {
-    console.log('app listening on port 3000!');
+index.listen(3000, () => {
+    console.log('index listening on port 3000!');
 });
 
 bot.onText(/\/recommend (.+)/, async (msg, match) => {
