@@ -51,14 +51,7 @@ bot.onText(/\/book (.+)/, async (msg, match) => {
   try {
     const book = await getBook(query);
     if (book) {
-      const response = `
-                Title: ${book.title}
-                Author(s): ${book.authors.join(', ')}
-                Publisher: ${book.publisher}
-                Published Date: ${book.publishedDate}
-                Description: ${book.description}
-                Preview Link: ${book.previewLink}
-            `;
+      const response = `Title: ${book.title} \nAuthor(s): ${book.authors.join(', ')}\nPublisher: ${book.publisher} \nPublished Date: ${book.publishedDate} \nDescription: ${book.description} \nPreview Link: ${book.previewLink}`;
       await bot.sendMessage(msg.chat.id, response);
     } else {
       await bot.sendMessage(msg.chat.id, 'No book found with that title.');
