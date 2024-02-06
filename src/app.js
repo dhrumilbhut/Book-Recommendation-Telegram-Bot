@@ -7,6 +7,9 @@ const bot = new TelegramBot(token, { polling: true });
 
 const app = express();
 
+app.use('/', (req, res) => {
+  res.send("Hello World!");
+});
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
