@@ -51,8 +51,8 @@ bot.onText(/\/book (.+)/, async (msg, match) => {
   try {
     const book = await getBook(query);
     if (book) {
-      const response = `\nTitle: ${book.title} \nAuthor(s): ${book.authors.join(', ')}\nPublisher: ${book.publisher} \nPublished Date: ${book.publishedDate} \nDescription: ${book.description} \nPreview Link: ${book.previewLink}`;
-      await bot.sendMessage(msg.chat.id, response);
+      const response = `\n*Title:* ${book.title} \n*Author(s):* ${book.authors.join(', ')}\n*Publisher:* ${book.publisher} \n*Published Date:* ${book.publishedDate} \n*Description:* ${book.description} \n*Preview Link:* ${book.previewLink}`;
+      await bot.sendMessage(msg.chat.id, response, { parse_mode: 'Markdown' });
     } else {
       await bot.sendMessage(msg.chat.id, 'No book found with that title.');
     }
